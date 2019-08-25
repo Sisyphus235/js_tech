@@ -20,6 +20,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <!-- prop-types 库，用于 propTypes 类型检查 -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -34,5 +39,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script type="text/babel">
+      // function fn(user){
+      //     return user.name+" is "+user.gender;
+      // }
+      // const user = {
+      //     name:"firefly",
+      //     gender:"male"
+      // }
+      // const element1 = <h1>{fn(user)}</h1>
+      // //is 没有被大括号包围，它会被解析成字符串。
+      // const element2 = <h2>{user.name} is {user.gender}</h2>
+      // //3+4 会被解析成表达式，最后得出运算结果。
+      // const element3 = <h3>{3+4}</h3>
+      // const ele = <div>{element1}{element2}{element3}</div>
+      // //将 ele 渲染到 DOM 中去。
+      // ReactDOM.render(ele, document.getElementById('root'));
+     </script>
   </body>
 </html>
