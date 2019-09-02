@@ -6,7 +6,7 @@ export default class Iframe extends PureComponent {
     if (!event.data.startsWith('setImmediate')){  // React will send message started with setImmediate
       console.log("parent received", event.data);
       const results = document.getElementById('results');
-      results.innerHTML = event.data;
+      results.innerHTML += event.data + '<br>';
     }
   }
 
@@ -30,6 +30,7 @@ export default class Iframe extends PureComponent {
 
     return (
       <div>
+        <custom-element></custom-element>
         <h1>Parent</h1>
         <p>Send Message <button id="message_button" onClick={this.handleParentClick.bind(this)}>Hi child</button></p>
         <span>Show Message </span>
@@ -37,6 +38,7 @@ export default class Iframe extends PureComponent {
         <iframe
           id="myFrame"
           width="100%"
+          height={0}
           frameBorder={1}
           scrolling="no"
           srcDoc="
