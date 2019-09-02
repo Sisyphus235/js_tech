@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { prototype } from 'node-notifier/notifiers/growl';
 
 const buttonStyle = {
     margin: '10px'
@@ -7,7 +8,6 @@ const buttonStyle = {
 class Counter extends Component {
     constructor(props){
         super(props);
-        console.log('enter constructor: ' + props.caption);
         this.onClickIncrementButton = this.onClickIncrementButton.bind(this);
         this.onClickDecrementButton = this.onClickDecrementButton.bind(this);
     
@@ -28,11 +28,19 @@ class Counter extends Component {
     }
 
     onClickIncrementButton() {
-        this.setState({count: this.state.count + 1});
+        this.updateCount(true);
     }
 
     onClickDecrementButton() {
-        this.setState({count: this.state.count - 1});
+        this.updateCount(false);
+    }
+
+    updateCount(isIncrement) {
+        const previousValue = this.state.count;
+        const newValue = isIncrement ? previousValue + 1: previousValue - 1;
+
+        this.setState({count: newValue});
+        this.props.onUpdate(newValue, previousValue);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -53,13 +61,9 @@ class Counter extends Component {
     }
 }
 
-// Counter.propTypes = {
-//     caption: PropTypes.string.isRequired,
-//     initValue: PropTypes.number
-// };
-
-// Counter.defaultProps = {
-//     initValue: 0
-// };
+Counter.defaultProps = {
+    initValue: 0,
+    onUpdate: f => f
+};
 
 export default Counter;
