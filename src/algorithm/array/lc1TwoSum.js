@@ -13,11 +13,15 @@
  * @return {number[]}
  */
 let twoSum = function(nums, target) {
-    let record = {};
-    for (let i = 0; i < nums.length; i++) {
-        let toSearch = target - nums[i];
-        if (toSearch in record) return [record[toSearch], i];
-        record[nums[i]] = i;
+    let known = {};
+    for (i = 0; i < nums.length; i++) {
+        const diff = target - nums[i];
+        // 慎用 diff in known，这样的写法会检查 known 原型链上所有属性值
+        if (known.hasOwnProperty(diff)) {
+            return [known[diff], i];
+        } else {
+            known[nums[i]] = i; 
+        }
     }
 };
 
